@@ -1,0 +1,14 @@
+[Unit]
+Description=Tarot Bot
+After=network.target
+
+[Service]
+Type=simple
+User=proxy
+WorkingDirectory=/opt/tarot-bot
+ExecStart=/opt/tarot-bot/tarot_bot
+Restart=on-failure
+EnvironmentFile=/opt/tarot-bot/.env
+
+[Install]
+WantedBy=multi-user.target
