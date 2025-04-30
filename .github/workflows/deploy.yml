@@ -1,5 +1,8 @@
 name: Deploy Tarot Bot
 
+env:
+  BINARY_NAME: tarot_bot
+
 on:
   push:
     branches:
@@ -42,13 +45,13 @@ jobs:
         run: dart pub get
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o tarot_bot
+        run: dart compile exe bin/main.dart -o ${{ env.BINARY_NAME }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: tarot-bot-binary
-          path: tarot_bot
+          path: ${{ env.BINARY_NAME }}
 
   upload:
     name: 🚚 Upload to Server
@@ -71,8 +74,16 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: tarot_bot
+        source: ${{ env.BINARY_NAME }}
         target: ${{ vars.SERVER_PATH }}/
+
+    - name: Set executable permission on remote binary
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: chmod +x ${{ vars.SERVER_PATH }}/${{ env.BINARY_NAME }}
             
   restart:
     name: 🔄 Restart Service (Optional)
