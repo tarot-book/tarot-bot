@@ -1,9 +1,7 @@
 // lib/bot.dart
+import 'package:tarot_bot/logger.dart';
 import 'package:teledart/telegram.dart';
 import 'package:teledart/model.dart';
-import 'package:logger/logger.dart';
-
-final logger = Logger();
 
 Future<void> handleStartCommand(
   Telegram telegram,

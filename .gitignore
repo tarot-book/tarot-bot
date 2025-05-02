@@ -27,3 +27,5 @@ doc/api/
 .flutter-plugins-dependencies
 
 *.code-workspace
+.DS_Store
+

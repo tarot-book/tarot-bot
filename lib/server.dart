@@ -4,11 +4,10 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
-import 'package:logger/logger.dart';
+import 'package:tarot_bot/logger.dart';
 import 'package:teledart/telegram.dart';
 import 'bot.dart';
 
-final logger = Logger();
 
 Future<void> startWebhookServer(
   Telegram telegram,
