@@ -8,7 +8,6 @@ import 'package:tarot_bot/logger.dart';
 import 'package:teledart/telegram.dart';
 import 'bot.dart';
 
-
 Future<void> startWebhookServer(
   Telegram telegram,
   int port,

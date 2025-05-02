@@ -9,6 +9,9 @@ WorkingDirectory=/opt/tarot-bot
 ExecStart=/opt/tarot-bot/tarot_bot
 Restart=on-failure
 EnvironmentFile=/opt/tarot-bot/.env
+StandardOutput=file:/var/log/tarot-bot.log
+StandardError=inherit
+
 
 [Install]
 WantedBy=multi-user.target
