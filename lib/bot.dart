@@ -12,12 +12,16 @@ Future<void> handleStartCommand(
   final from = message['from']?['username'] ?? 'unknown';
   logger.i('/start command received from @$from');
 
+  final timestamp = DateTime.now().millisecondsSinceEpoch;
+  final baseUrl = webAppUrl ?? 'https://app.tarot.ru';
+  final versionedUrl = '$baseUrl?v=$timestamp';
+
   final replyMarkup = InlineKeyboardMarkup(
     inlineKeyboard: [
       [
         InlineKeyboardButton(
           text: 'Открыть Азбуку Таро',
-          webApp: WebAppInfo(url: webAppUrl ?? 'https://app.tarot.ru'),
+          webApp: WebAppInfo(url: versionedUrl),
         )
       ]
     ],
